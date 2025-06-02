@@ -114,7 +114,7 @@ class SchoolData():
 				'6' : ('Eletivas', 'Vários professores'),
 				'7' : ('Eletivas', 'Vários professores'),
 				'8' : ('Projeto de Vida', 'Karla'),
-				'9' : ('Projeto de Vida', 'Karla')}
+				'9' : ('Projeto de Vida', 'Karla')},
 			'Wednesday' : {
 				'1' : ('História, Cultura e Identidades Sergipanas', 'Joanelice'),
 				'2' : ('Filosofia', sem_prof),
@@ -122,7 +122,40 @@ class SchoolData():
 				'4' : ('Estudo Orientado', 'Joanelice'),
 				'5' : ('Operações Matemáticas', 'Jussara Abreu'),
 				'6' : ('Educação Física', 'David'),
-				}}
+				'7' : ('Artes', 'Luciana'),
+				'8' : ('Tutoria', 'Claudia'),
+				'9' : ('Esporte, Cultura e Arte na Prática', 'David')},
+			'Thursday' : {
+				'1' : ('Língua Portuguesa', 'Victor'),
+				'2' : ('Redação', 'Carla'),
+				'3' : ('Física', 'Mário'),
+				'4' : ('Sociologia', 'Claudia'),
+				'5' : ('História', 'Joanelice'),
+				'6' : ('Ecologia e Meio Ambiente', 'Kalideri'),
+				'7' : ('Matemática', 'Jussara Abreu'),
+				'8' : ('Geografia', 'Edilson Carneiro'),
+				'9' : ('Física', 'Mário')},
+			'Friday': {
+				'1' : ('Língua Portuguesa', 'Victor'),
+				'2' : ('Química', 'Adriana'),
+				'3' : ('Artes', 'Luciana'),
+				'4' : ('Estudo Orientado', 'Joanelice'),
+				'5' : ('Biologia', 'Karla'),
+				'6' : ('Operações Matemáticas', 'Jussara Abreu'),
+				'7' : ('Matemática', 'Jussara Abreu'),
+				'8' : ('Língua Inglesa', 'Ricleberson'),
+				'9' : ('História, Cultura e Identidades Sergipanas', 'Joanelice')}},
+		'1b' : {
+			'Monday' : {
+				'1' : ('', ''),
+				'2' : ('', ''),
+				'3' : ('', ''),
+				'4' : ('', ''),
+				'5' : ('', ''),
+				'6' : ('', ''),
+				'7' : ('', ''),
+				'8' : ('', ''),
+				'9' : ('', '')}},
 
 		'1c' : {
 			'Monday' : {

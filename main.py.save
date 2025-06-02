@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, make_response
 from schoollib import SchoolData
 
-app = Flask(__name__)
+app = Flask(__name__, )
 backend = SchoolData()
 
 @app.route('/logout')
@@ -35,14 +35,12 @@ def prologin() -> 'html':
 	proc = backend.login(turma, senha)
 	if proc[0] == True:
 		session['turma'] = proc[1]
-		response = make_response(redirect('/'))
-		turma_cock = response.cookies('user', turma)
 		if 'login_error' in session:
 			session.pop('login_error')
 	else:
 		session['login_error'] = True
 		return redirect('/login')
-	return response
+	return redirect('/')
 
 @app.route('/')
 @app.route('/homepage')
