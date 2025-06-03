@@ -6,7 +6,9 @@ backend = SchoolData()
 
 @app.route('/logout')
 def do_logout() -> str:
-	session.pop('turma')
+	if 'turma' in session:
+		session.pop('turma')
+		cock = request.cookie.remove('user')
 	return 'You are now logged out.'
 
 @app.route('/login/err')
@@ -36,7 +38,7 @@ def prologin() -> 'html':
 	if proc[0] == True:
 		session['turma'] = proc[1]
 		response = make_response(redirect('/'))
-		turma_cock = response.cookies('user', turma)
+		turma_cock = response.cookies('user', proc[1])
 		if 'login_error' in session:
 			session.pop('login_error')
 	else:
@@ -45,6 +47,12 @@ def prologin() -> 'html':
 	return response
 
 @app.route('/')
+def init():
+	cock = request.cookies
+	if 'user' in cock:
+		session['turma'] = cock.get('user')
+	return redirect('/homepage')
+
 @app.route('/homepage')
 def homepage():
 	return render_template('homepage.html',
@@ -56,11 +64,6 @@ def horario() -> 'html':
 		return redirect('/login')
 	horario = backend.aula(session['turma'])
 	print(horario)
-	try:
-		del prof
-		del aula
-	except UnboundLocalError:
-		print('Error 0001: Tried to remove some varibles that not exist')
 	prof = horario[1]
 	aula = horario[0]
 	return render_template('horario.html',
@@ -81,7 +84,7 @@ def almoco():
 		case 2:
 			message = 'Nem Tanto, porque sua turma estâ no 2° lugar na fila do almoço.'
 		case 3:
-			message = 'Não, porque sua turma está no 3° lugar da fila.'
+			message = 'Não, porque sua turma está no 3° lugar da fila do almoço.'
 	return render_template('almoco.html',
 				message=message,
 				first_class=ordem[0],

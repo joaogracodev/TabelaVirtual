@@ -87,12 +87,10 @@ class SchoolData():
 			sala -> dia -> aula -> (matéria, professor) """
 		self.get_time()
 		horario = self.horario()
-		if horario in ('11', '12', '13'):
-			return ('Intervalo','Nenhum')
+		if horario in ('11', '12', '13', '0'):
+			return ('Nada','Nenhum')
 		if self.dia in ('Saturday', 'Sunday'):
 			return ('Nada'  'Nenhum')
-		if horario == '0':
-			return ('Nada', 'Nenhum')
 		aulas = {
 		'1a' : {
 			'Monday' : {
@@ -147,6 +145,46 @@ class SchoolData():
 				'9' : ('História, Cultura e Identidades Sergipanas', 'Joanelice')}},
 		'1b' : {
 			'Monday' : {
+				'1' : ('História', 'Joanelice'),
+				'2' : ('História, Cultura e Identidades Sergipanas', 'Joanelice'),
+				'3' : ('Língua Portuguesa', 'Victor'),
+				'4' : ('Matemática', 'Jussara'),
+				'5' : ('Geografia', 'Edilson Carneiro'),
+				'6' : ('', ''),
+				'7' : ('', ''),
+				'8' : ('', ''),
+				'9' : ('', '')},
+			'Tuesday' : {
+				'1' : ('E', ''),
+				'2' : ('', ''),
+				'3' : ('', ''),
+				'4' : ('', ''),
+				'5' : ('', ''),
+				'6' : ('', '')
+				'7' : ('', ''),
+				'8' : ('', ''),
+				'9' : ('', '')},
+			'Wednesday' : {
+				'1' : ('', ''),
+				'2' : ('', ''),
+				'3' : ('', ''),
+				'4' : ('', ''),
+				'5' : ('', ''),
+				'6' : ('', ''),
+				'7' : ('', ''),
+				'8' : ('', ''),
+				'9' : ('', '')},
+			'Thursday' : {
+				'1' : ('', ''),
+				'2' : ('', ''),
+				'3' : ('', ''),
+				'4' : ('', ''),
+				'5' : ('', ''),
+				'6' : ('', ''),
+				'7' : ('', ''),
+				'8' : ('', ''),
+				'9' : ('', '')},
+			'Friday' : {
 				'1' : ('', ''),
 				'2' : ('', ''),
 				'3' : ('', ''),
