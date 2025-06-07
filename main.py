@@ -68,9 +68,12 @@ def horario() -> 'html':
 	print(horario)
 	prof = horario[1]
 	aula = horario[0]
+	if aula != 'Nada':
+		main_text = f'Agora está tendo aula de {aula}, com o professor(a) {prof}.'
+	else:
+		main_text = 'Agora não está tendo aula.'
 	return render_template('horario.html',
-				prof=prof,
-				aula=aula,
+				text=main_text,
 				page_title='Horário da aula',)
 
 @app.route('/almoco')
