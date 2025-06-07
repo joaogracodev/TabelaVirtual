@@ -1,18 +1,29 @@
 from datetime import datetime
 
+class IsMissingFilesError(Exception):
+	pass
+
 class SchoolData():
 	def __init__(self):
-		pass
+		try:
+			with open('users.txt') as raw_file:
+				self.users = {}
+				for line in raw_file:
+					data = line.rstrip('\n').split(',')
+					data1 = data[0]
+					self.users[data1] = data[1]
+		except FileNotFoundError as Err:
+			raise IsMissingFilesError('Error: Is something missing?')
 
 	def login(self, user, passwd) -> tuple:
-		match user:
-			case 'sala-1c':
-				if passwd == 'balacobaco':
-					return (True, '1c')
-			case 'sala-1a':
-				if passwd == 'blackpink':
-					return (True, '1c')
-		return (False)
+		list_usr = list(user)
+		for i in range(5):
+			list_usr.pop(0)
+		turma = ''.join(list_usr)
+		if user in self.users and self.users[user] == passwd:
+			return (True, turma)
+		return (False, '')
+
 	def get_time(self):
 		self.agora = datetime.now()
 		self.dia = self.agora.strftime('%A')
@@ -150,50 +161,50 @@ class SchoolData():
 				'3' : ('Língua Portuguesa', 'Victor'),
 				'4' : ('Matemática', 'Jussara'),
 				'5' : ('Geografia', 'Edilson Carneiro'),
-				'6' : ('', ''),
-				'7' : ('', ''),
-				'8' : ('', ''),
-				'9' : ('', '')},
+				'6' : ('Química', 'Adriana'),
+				'7' : ('Estudo Orientado', 'Adriana'),
+				'8' : ('Biologia', 'Karla'),
+				'9' : ('Geografia', 'Edilson')},
 			'Tuesday' : {
-				'1' : ('E', ''),
-				'2' : ('', ''),
-				'3' : ('', ''),
-				'4' : ('', ''),
-				'5' : ('', ''),
-				'6' : ('', '')
-				'7' : ('', ''),
-				'8' : ('', ''),
-				'9' : ('', '')},
+				'1' : ('Ecologia e Meio Ambiente', 'Kalideri'),
+				'2' : ('Língua Inglesa', 'Ricleberson'),
+				'3' : ('Sociologia', 'Claudia'),
+				'4' : ('Filosofia', sem_prof),
+				'5' : ('Estudo Orientado', 'Adriana'),
+				'6' : ('Eletivas', 'Vários Professores'),
+				'7' : ('Eletivas', 'Vários Professores'),
+				'8' : ('Língua Portuguesa', 'Victor'),
+				'9' : ('Operações Matemáticas', 'Jussara Abreu')},
 			'Wednesday' : {
-				'1' : ('', ''),
-				'2' : ('', ''),
-				'3' : ('', ''),
-				'4' : ('', ''),
-				'5' : ('', ''),
-				'6' : ('', ''),
-				'7' : ('', ''),
-				'8' : ('', ''),
-				'9' : ('', '')},
+				'1' : ('Educação Física', 'David'),
+				'2' : ('Redação', 'Carla'),
+				'3' : ('Filosofia', sem_prof),
+				'4' : ('Educação Física', 'David'),
+				'5' : ('Esporte, Arte e Cultura na Prática', 'David'),
+				'6' : ('Projeto de Vida', 'Karla'),
+				'7' : ('Projeto de Vida', 'Karla'),
+				'8' : ('Tutoria', 'David'),
+				'9' : ('Ecologia e Meio Ambiente', 'Kalideri')},
 			'Thursday' : {
-				'1' : ('', ''),
-				'2' : ('', ''),
-				'3' : ('', ''),
-				'4' : ('', ''),
-				'5' : ('', ''),
-				'6' : ('', ''),
-				'7' : ('', ''),
-				'8' : ('', ''),
-				'9' : ('', '')},
+				'1' : ('Física', 'Mário'),
+				'2' : ('Matemática', 'Jussara Abreu'),
+				'3' : ('Língua Portuguesa', 'Victor'),
+				'4' : ('Estudo Orientado', 'Adriana'),
+				'5' : ('Química', 'Adriana'),
+				'6' : ('Operações Matemáticas', 'Jussara Abreu'),
+				'7' : ('Artes', 'Luciana'),
+				'8' : ('História', 'Joanelice'),
+				'9' : ('Língua Inglesa', 'Joanelice')},
 			'Friday' : {
-				'1' : ('', ''),
-				'2' : ('', ''),
-				'3' : ('', ''),
-				'4' : ('', ''),
-				'5' : ('', ''),
-				'6' : ('', ''),
-				'7' : ('', ''),
-				'8' : ('', ''),
-				'9' : ('', '')}},
+				'1' : ('Matemática', 'Jussara Abreu'),
+				'2' : ('Física', 'Mário'),
+				'3' : ('Redação', 'Carla'),
+				'4' : ('Esporte, Cultura e Arte na Prática', 'David'),
+				'5' : ('Artes', 'Luciana'),
+				'6' : ('Língua Portuguesa', 'Victor'),
+				'7' : ('Biologia', 'Karla'),
+				'8' : ('História, Cultura e Identidades Sergipanas', 'Joanelice'),
+				'9' : ('Sociologia', 'Claudia')}},
 
 		'1c' : {
 			'Monday' : {

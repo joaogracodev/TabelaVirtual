@@ -1,0 +1,3 @@
+sala-1a,blackpink
+sala-1b,riachuelo
+sala-1c,balacobaco

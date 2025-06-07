@@ -7,9 +7,10 @@ backend = SchoolData()
 @app.route('/logout')
 def do_logout() -> str:
 	if 'turma' in session:
+		response = make_response('deslogado')
 		session.pop('turma')
-		cock = request.cookie.remove('user')
-	return 'You are now logged out.'
+		cock = response.set_cookie('user', '', max_age=0)
+	return response
 
 @app.route('/login/err')
 def login_error():
@@ -34,11 +35,11 @@ def login():
 def prologin() -> 'html':
 	turma = request.form['user']
 	senha = request.form['password']
-	proc = backend.login(turma, senha)
+	proc = backend.login(turma.lower(), senha.lower())
 	if proc[0] == True:
 		session['turma'] = proc[1]
 		response = make_response(redirect('/'))
-		turma_cock = response.cookies('user', proc[1])
+		turma_cock = response.set_cookie('user', proc[1])
 		if 'login_error' in session:
 			session.pop('login_error')
 	else:
@@ -50,6 +51,7 @@ def prologin() -> 'html':
 def init():
 	cock = request.cookies
 	if 'user' in cock:
+		print('cock detected')
 		session['turma'] = cock.get('user')
 	return redirect('/homepage')
 
