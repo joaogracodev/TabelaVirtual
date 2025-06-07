@@ -36,10 +36,10 @@ def prologin() -> 'html':
 	turma = request.form['user']
 	senha = request.form['password']
 	proc = backend.login(turma.lower(), senha.lower())
-	if proc[0] == True:
-		session['turma'] = proc[1]
+	if proc['login'] == True:
+		session['turma'] = proc['turma']
 		response = make_response(redirect('/'))
-		turma_cock = response.set_cookie('user', proc[1])
+		turma_cock = response.set_cookie('user', proc['turma'])
 		if 'login_error' in session:
 			session.pop('login_error')
 	else:

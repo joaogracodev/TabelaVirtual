@@ -21,8 +21,8 @@ class SchoolData():
 			list_usr.pop(0)
 		turma = ''.join(list_usr)
 		if user in self.users and self.users[user] == passwd:
-			return (True, turma)
-		return (False, '')
+			return {'login' : True, 'turma' : turma}
+		return {'login' : False, 'turma' : ''}
 
 	def get_time(self):
 		self.agora = datetime.now()
