@@ -2,7 +2,19 @@ from flask import Flask, render_template, request, session, redirect, make_respo
 from schoollib import SchoolData
 
 app = Flask(__name__)
-backend = SchoolData()
+
+if __name__ == '__main__':
+	app.config['dbconfig'] = {'host' : 'localhost',
+                        'user' : 'root',
+			'password' : '',
+			'database' : 'Tabela'}
+else:
+	app.config['dbconfig'] = {'host' : 'joaograco.mysql.pythonanywhere-services.com',
+                                         'user' : 'joaograco',
+                                         'password' : '3248213379a',
+                                         'database' : 'joaograco$website'}
+
+backend = SchoolData(app.config['dbconfig'])
 
 @app.route('/logout')
 def do_logout() -> str:

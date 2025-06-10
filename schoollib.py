@@ -1,31 +1,27 @@
 from datetime import datetime
-
-class IsMissingFilesError(Exception):
-	pass
+from DBcm import UseDatabase
+import hashlib
+import pytz
 
 class SchoolData():
-	def __init__(self):
-		try:
-			with open('users.txt') as raw_file:
-				self.users = {}
-				for line in raw_file:
-					data = line.rstrip('\n').split(',')
-					data1 = data[0]
-					self.users[data1] = data[1]
-		except FileNotFoundError as Err:
-			raise IsMissingFilesError('Error: Is something missing?')
+	def __init__(self, dbconfig):
+		self.dbconfig = dbconfig
 
-	def login(self, user, passwd) -> tuple:
-		list_usr = list(user)
-		for i in range(5):
-			list_usr.pop(0)
-		turma = ''.join(list_usr)
-		if user in self.users and self.users[user] == passwd:
-			return {'login' : True, 'turma' : turma}
+	def login(self, user, passwd) -> dict:
+		hash_obj = hashlib.sha256(passwd.encode())
+		passwd_hash = hash_obj.hexdigest()
+		with UseDatabase(self.dbconfig) as cursor:
+			sql = '''select user, password, sala from users'''
+			cursor.execute(sql)
+			results = cursor.fetchall()
+		for line in results:
+			if user in line[0] and passwd_hash == line[1]:
+				return {'login' : True, 'turma' : line[2]}
 		return {'login' : False, 'turma' : ''}
 
 	def get_time(self):
-		self.agora = datetime.now()
+		timezone = pytz.timezone('America/Sao_Paulo')
+		self.agora = datetime.now(timezone)
 		self.dia = self.agora.strftime('%A')
 		self.hora = int(self.agora.strftime('%H'))
 		self.data = self.agora.day
@@ -264,9 +260,9 @@ class SchoolData():
 		self.get_time()
 		new_turma = list(turma).pop(0)
 		if self.data in list(range(1, 31, 3)):
-			ordem = ('1', '2', '3')
+			ordem = '1|2|3'.split('|')
 		elif self.data in list(range(2, 31, 3)):
-			ordem = ('3', '1', '2')
+			ordem = '3|1|2'.split('|')
 		elif self.data in list(range(3, 31, 3)):
-			ordem = ('2', '3', '1')
+			ordem = '2|3|1'.split('|')
 		return {'ordem' : ordem, 'pos_sala' : (ordem.index(new_turma)+1)}
