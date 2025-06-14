@@ -15,6 +15,7 @@ class SchoolData():
 			cursor.execute(sql)
 			results = cursor.fetchall()
 		for line in results:
+			print(line)
 			if user in line[0] and passwd_hash == line[1]:
 				return {'login' : True, 'turma' : line[2]}
 		return {'login' : False, 'turma' : ''}
@@ -260,9 +261,9 @@ class SchoolData():
 		self.get_time()
 		new_turma = list(turma).pop(0)
 		if self.data in list(range(1, 31, 3)):
-			ordem = '1|2|3'.split('|')
+			ordem = ('1', '2', '3')
 		elif self.data in list(range(2, 31, 3)):
-			ordem = '3|1|2'.split('|')
+			ordem = ('3', '1', '2')
 		elif self.data in list(range(3, 31, 3)):
-			ordem = '2|3|1'.split('|')
+			ordem = ('2', '3', '1')
 		return {'ordem' : ordem, 'pos_sala' : (ordem.index(new_turma)+1)}

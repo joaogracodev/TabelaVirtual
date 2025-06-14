@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, make_response
 from schoollib import SchoolData
+from html import escape
 
 app = Flask(__name__)
 
@@ -81,7 +82,7 @@ def horario() -> 'html':
 	prof = horario[1]
 	aula = horario[0]
 	if aula != 'Nada':
-		main_text = f'Agora está tendo aula de {aula}, com o professor(a) {prof}.'
+		main_text = escape(f'Agora está tendo aula de {aula}, com o professor(a) {prof}.')
 	else:
 		main_text = 'Agora não está tendo aula.'
 	return render_template('horario.html',
@@ -97,11 +98,11 @@ def almoco():
 	pos = raw_data['pos_sala']
 	match pos:
 		case 1:
-			message = 'Sim, porque sua turma está em 1° lugar na fila do almoço.'
+			message = escape('Sim, porque sua turma está em 1° lugar na fila do almoço.')
 		case 2:
-			message = 'Nem Tanto, porque sua turma estâ no 2° lugar na fila do almoço.'
+			message = escape('Nem Tanto, porque sua turma estâ no 2° lugar na fila do almoço.')
 		case 3:
-			message = 'Não, porque sua turma está no 3° lugar da fila do almoço.'
+			message = escape('Não, porque sua turma está no 3° lugar da fila do almoço.')
 	return render_template('almoco.html',
 				message=message,
 				first_class=ordem[0],
