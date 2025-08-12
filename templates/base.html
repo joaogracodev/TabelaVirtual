@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-br" data-bs-theme="dark">
+    <head>
+        <title>{{ page_title }}</title>
+        <!-- <link rel="stylesheet" href="static/hf.css" /> -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Made by Gabiii_UwU">
+    <meta name="generator" content="Boykisser 0.1.0">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+<!-- <link rel="icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png"> -->
+<!-- <link rel="icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png"> -->
+<!-- link rel="manifest" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/manifest.json"> -->
+<!-- <link rel="icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/favicon.ico"> -->
+<meta name="theme-color" content="#712cf9">
+
+
+    <style>
+      {% block style %}
+
+      {% endblock %}
+    </style>
+
+    <!-- Custom styles for this template -->
+    </head>
+    <body class="d-flex h-100 align-items-center py-4 bg-body-tertiary text-center">
+        {% block body %}
+
+        {% endblock %}
+    </body>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/color-modes.js')}}"></script>
+</html>
