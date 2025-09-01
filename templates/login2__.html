@@ -136,25 +136,20 @@
 
     
 <main class="form-signin w-100 m-auto">
-  <form method='POST' action='/login/enviando/login_err'>
+  <form method='POST' action='/login/continue/'>
     <!-- <img class="mb-4" src="./Signin Template · Bootstrap v5.3_files/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-    <p class="mt-5 mb-3 text-body-secondary text-color-red">Usuário ou senha errado!!</p>
     <h1 class="h3 mb-3 fw-normal">Faça login</h1>
 
     <div class="form-floating">
       <input type="email" class="form-control" name="email" placeholder="seu@email.com">
-      <label for="floatingInput">Usuário</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" name="password" placeholder="Senha">
-      <label for="floatingPassword">Senha</label>
+      <label for="floatingInput">Email</label>
     </div>
 
     <button class="btn btn-primary w-100 py-2" type="submit">Continue</button>
     <p class="mt-5 mb-3 text-body-secondary">Feito por Joaograco4</p>
   </form>
 </main>
-<script defer="" src="{{ url_for('static', filename='/js/bootstrap.bundle.min.js')}}" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"></script>
+<script defer="" src="{{ url_for('static', filename='/js/bootstrap.bundle.min.js')}}"></script>
 
 
 {% endblock %}

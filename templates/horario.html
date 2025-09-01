@@ -85,7 +85,7 @@
 {% endblock %}
 
 {% block body %}
-<link href="/static/cover.css" rel="stylesheet">
+<link href="{{ url_for('static', filename='/css/cover.css')}}" rel="stylesheet">
 
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
 <symbol id="check2" viewBox="0 0 16 16">
@@ -147,8 +147,8 @@
 <div>
   <h3 class="float-md-start mb-0">Insira um nome aqui</h3>
   <nav class="nav nav-masthead justify-content-center float-md-end">
-    <a class="nav-link fw-bold py-1 px-0" href="/homepage">Home</a>
-    <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="/horario">Aula</a>
+    <a class="nav-link fw-bold py-1 px-0" href="/home">Home</a>
+    <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="/aula">Aula</a>
     <a class="nav-link fw-bold py-1 px-0" href="/almoco">Almoço</a>
   </nav>
 </div>
@@ -158,8 +158,10 @@
 <h1>Qual a aula que está tendo agora na minha sala?</h1>
 <p class="lead">{{ text }}</p>
 </main>
-
+<footer class="mt-auto text-white-50">
+    <p>Feito por Joaograco4</p>
+  </footer>
 </div>
-<script defer src="https://getbootstrap.com/assets/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"></script>
+<script defer src="{{ url_for('static', filename='/js/bootstrap.bundle.min.js')}}"></script>
 
 {% endblock %}

@@ -7,18 +7,26 @@ class SchoolData():
 	def __init__(self, dbconfig):
 		self.dbconfig = dbconfig
 
-	def login(self, user, passwd) -> dict:
-		hash_obj = hashlib.sha256(passwd.encode())
-		passwd_hash = hash_obj.hexdigest()
-		with UseDatabase(self.dbconfig) as cursor:
-			sql = '''select user, password, sala from users'''
-			cursor.execute(sql)
-			results = cursor.fetchall()
-		for line in results:
-			print(line)
-			if user in line[0] and passwd_hash == line[1]:
-				return {'login' : True, 'turma' : line[2]}
-		return {'login' : False, 'turma' : ''}
+	def salas(codigo):
+		match codigo:
+			case 'tbmb1b':
+				return '1a'
+			case 'tbmb1c':
+				return '1b'
+			case 'tbmb1d':
+				return '1c'
+			case 'ucnc2c':
+				return '2a'
+			case 'ucnc2d':
+				return '2b'
+			case 'ucnc2e':
+				return '2c'
+			case 'vdod3d':
+				return '3a'
+			case 'vdod3e':
+				return '3b'
+			case 'vdod3f':
+				return '3c'
 
 	def get_time(self):
 		timezone = pytz.timezone('America/Sao_Paulo')

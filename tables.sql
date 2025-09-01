@@ -48,12 +48,33 @@ create table aulas(
 insert into users (
     user, nome, senha, email, sala, tipo
 ) values (
-    'aluno', 'teste', 'aluno', 'example@aluno', '1c', 'aluno'
+    'aluno', 'teste', 'a21d6f3803f0491c32444ef91a0836be243cc4da5186357e805b7009a5b0669b', 'example@aluno', '1c', 'aluno'
 );
+
+/*
+    User default aluno
+    user: aluno
+    nome: teste
+    senha: aluno
+    email: example@aluno
+    sala: 1c
+    tip: aluno
+*/
+
 
 -- User default prof
 insert into users(
     user, nome, senha, email, sala, tipo
 ) values (
-    'prof', 'teste', 'prof', 'example@prof', 'todas', 'prof'
+    'prof', 'teste', '51d1e6a398acbda7e15b687de747e7dfe95fa13154dcb40aa8ab37f1e2b393a0', 'example@prof', 'todas', 'prof'
 );
+
+/*
+    User default professor
+    user: prof
+    nome: teste
+    senha: prof
+    email: example@prof
+    sala: todas
+    tipo: prof
+*/
